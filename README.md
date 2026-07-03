@@ -2,7 +2,7 @@
 
 **[Open the app → https://minweny.github.io/local-jwt-decoder/](https://minweny.github.io/local-jwt-decoder/)**
 
-**Local JWT Decoder** is a lightweight JavaScript tool for decoding [JSON Web Tokens (JWTs)](https://jwt.io/introduction). All decoding runs 100% in your browser.
+**Local JWT Decoder** is a pure static HTML/CSS/JS JWT decoder. All decoding happens locally in your browser. No network requests.
 
 ---
 
