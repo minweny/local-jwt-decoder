@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local JWT Decoder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1>Local JWT Decoder</h1>
+      <p class="subtitle">Decode JSON Web Tokens without sending them anywhere.</p>
+    </header>
+
+    <section class="security-banner" aria-label="Security guarantees">
+      <p class="security-banner__lead">
+        <span class="security-banner__shield" aria-hidden="true">&#x1F6E1;</span>
+        Built for sensitive tokens — your data never leaves this page.
+      </p>
+      <ul class="security-banner__list">
+        <li>
+          <strong>100% on your device</strong>
+          <span>Decoding runs entirely in your browser. No server, no upload, no logging.</span>
+        </li>
+        <li>
+          <strong>Zero network requests</strong>
+          <span>No API calls, analytics, or CDN fetches. Open DevTools and confirm for yourself.</span>
+        </li>
+        <li>
+          <strong>No third-party code</strong>
+          <span>Plain HTML, CSS, and JavaScript only — no frameworks or external libraries.</span>
+        </li>
+        <li>
+          <strong>Fully auditable</strong>
+          <span>A few hundred lines of readable source. Inspect before you paste.</span>
+        </li>
+      </ul>
+    </section>
+
+    <main class="app-main">
+      <section class="panel panel-input" aria-labelledby="input-heading">
+        <div class="panel-header">
+          <h2 id="input-heading">Encoded JWT</h2>
+          <button type="button" class="btn btn-ghost" id="clear-btn" title="Clear input">Clear</button>
+        </div>
+        <textarea
+          id="jwt-input"
+          class="jwt-textarea"
+          placeholder="Paste your JWT here (e.g. eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...)"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+        ></textarea>
+        <div id="status-bar" class="status-bar status-bar--idle" role="status" aria-live="polite">
+          <span id="status-icon" class="status-icon" aria-hidden="true">●</span>
+          <span id="status-text">Enter a JWT to decode</span>
+        </div>
+      </section>
+
+      <div class="decode-grid" aria-labelledby="output-heading">
+        <h2 id="output-heading" class="visually-hidden">Decoded output</h2>
+
+        <article class="panel decode-block" id="header-block">
+          <div class="decode-block-header">
+            <h3>Header</h3>
+            <button type="button" class="btn btn-copy" data-copy-target="header-output" disabled>
+              Copy
+            </button>
+          </div>
+          <pre id="header-output" class="json-output json-output--header json-output--empty" tabindex="0">—</pre>
+        </article>
+
+        <article class="panel decode-block" id="payload-block">
+          <div class="decode-block-header">
+            <h3>Payload</h3>
+            <button type="button" class="btn btn-copy" data-copy-target="payload-output" disabled>
+              Copy
+            </button>
+          </div>
+          <pre id="payload-output" class="json-output json-output--payload json-output--empty" tabindex="0">—</pre>
+        </article>
+
+        <article class="panel decode-block decode-block--signature decode-block--full" id="signature-block">
+          <div class="decode-block-header">
+            <h3>Signature</h3>
+            <button type="button" class="btn btn-copy" data-copy-target="signature-output" disabled>
+              Copy
+            </button>
+          </div>
+          <pre id="signature-output" class="json-output signature-output json-output--empty" tabindex="0">—</pre>
+          <p class="signature-note">Signature is shown as raw Base64URL. Verification requires the secret or public key.</p>
+        </article>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <p>Client-side only · No network requests · No external dependencies</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast" role="alert" aria-live="assertive" hidden>Copied to clipboard</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
